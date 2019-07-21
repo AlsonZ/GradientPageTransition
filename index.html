@@ -11,15 +11,18 @@
     <body>
         
         <nav>
-            <p id="home" class="navi home">Home</p>
-            <p id="about" class="navi about">About</p>
+            <ul class="navi">
+                <li><p id="home" >Home</p></li>
+                <li><p id="about" >About</p></li>
+                <li><p id="contactUs" >Contact Us</p></li>
+            </ul>
         </nav>
         
         <main id="mainNode">
             <section id="child" class="home" style="z-index: -1">
                 <section class="bg-home">
-<!--                        <div class="temp-home-bg"></div>-->
-                        <div class="gradient-home"></div>
+<!--                        <div class="temp-home-bg" style="opacity:0"></div>-->
+                        <div id="tempbgid" class="gradient-home"></div>
                 </section>
             </section>
         </main>

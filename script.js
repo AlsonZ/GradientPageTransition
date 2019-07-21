@@ -4,8 +4,9 @@
 /* eslint-env es6 */
 
 let mainNode = document.getElementById('mainNode');
-let homeEle = document.getElementById('home');
-let aboutEle = document.getElementById('about');
+let homeBtn = document.getElementById('home');
+let aboutBtn = document.getElementById('about');
+let contactUsBtn = document.getElementById('contactUs');
 
 const tl = new TimelineMax();
 
@@ -13,45 +14,60 @@ let homeObj = {
     class:"home",
     bg:"bg-home",
     gradient:"gradient-home",
-    tempbg:"temp-home-bg"
+    tempbg:""
 };
 
 let aboutObj = {
     class:"about",
     bg:"bg-about",
     gradient:"gradient-about",
-    tempbg:"temp-about-bg"
+    tempbg:""
+};
+let contactUsObj = {
+    class:"contactUs",
+    bg:"bg-contactUs",
+    gradient:"gradient-contactUs",
+    tempbg:""
 };
 
-homeEle.addEventListener("click", function() {
+homeBtn.addEventListener("click", function() {
     if(document.getElementById('child').className !== 'home') {
        loadpage.call(homeObj);
     }
 });
-aboutEle.addEventListener("click", function() {
+aboutBtn.addEventListener("click", function() {
     if(document.getElementById('child').className !== 'about') {
        loadpage.call(aboutObj);
     }
 });
+contactUsBtn.addEventListener("click", function() {
+    if(document.getElementById('child').className !== 'contactUs') {
+       loadpage.call(contactUsObj);
+    }
+});
 
 function loadpage() {
+    let tempbg = document.getElementById('tempbgid').className;
+    //console.log(tempbg);
+    this.tempbg = tempbg;
     let newSection = document.createElement("section");
     newSection.setAttribute('id', 'child');
     newSection.className = `${this.class}`;
     newSection.innerHTML = 
             `<section class="${this.bg}">
-                <div class="${this.gradient}"></div>
-                <div class="${this.tempbg}"></div>
+                <div class="${tempbg}"></div> 
+                <div id="tempbgid" class="${this.gradient}"></div>
             </section>`;
+    // need to grab previous pages tempbg instead of a set thing
     mainNode.appendChild(newSection);
     
     let oldChild = document.querySelector('#child');
     mainNode.removeChild(oldChild);
     
-    runAni.call(this);
+    runAnimation.call(this);
 }
 
-function runAni() {
+function runAnimation() {
     let gradChild = document.querySelector(`.${this.gradient}`);
     let tempbg = document.querySelector(`.${this.tempbg}`);
 
